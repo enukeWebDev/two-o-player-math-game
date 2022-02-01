@@ -13,12 +13,10 @@ Classes
 2. Players
     - Will contain the players input
       * Players name with their number of lives
-      * Access the validation_prompt method - will show if the answer if   correct or not
       * Methods/functions to include:
-        1. remaining_lives
-        2. turn
+        1. lives / remaining_lives
 
-3. Validations
+3. Questions/Validations
     - Will contain all questions and correct answers
       * Validate the players answer
       * Methods; 
