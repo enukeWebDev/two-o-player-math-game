@@ -6,12 +6,6 @@
 #     - Will contain the loop of the game and players turn information
 #       * Holds all prompts for different activities/actions
 #       * Validation to find out if players answers is correct or not
-#       * Methods/functions to include:
-#         1. beginning_prompt
-#         2. turn_prompt
-#         3. validation_propmt
-#         4. win_propmt
-
 
 require_relative 'players'
 require_relative 'questions'
@@ -26,7 +20,7 @@ def players_turn(player)
   puts "#{player.name}: What does #{Questions.first_random_number} plus #{Questions.second_random_number} equal to?"
   isCorrectAnswer = gets.chomp 
   
-  if Questions.check(isCorrectAnswer)
+  if Questions.validate_answers(isCorrectAnswer)
     puts "YES! You are correct."
 
   else
@@ -34,21 +28,30 @@ def players_turn(player)
     player.wrong_answer
   end
 
-  puts "#{firstPlayer.name}: #{@firstPlayer.lives}/3 vs #{secondPlayer.name}: #{@secondPlayer.lives}/3"
+  puts "#{@firstPlayer.name}: #{@firstPlayer.lives}/3 vs #{@secondPlayer.name}: #{@secondPlayer.lives}/3"
 
 end
 
 loop do 
-
-  players_turn(firstPlayer)
-  break puts "Player 2 wins with a score of #{@secondPlayer.lives}/3" if (@secondPlayer.game_over)
-
-  players_turn(secondPlayer)
-  break puts "Player 1 wins with a score of #{firstPlayer.lives}/3" if (@firstPlayer.game_over)
+  players_turn(@firstPlayer)
+  puts "Player 2 wins with a score of #{@secondPlayer.lives}/3" 
+  if (@firstPlayer.game_over)
+    break
+  end
+  players_turn(@secondPlayer)
+  puts "Player 1 wins with a score of #{@firstPlayer.lives}/3" 
+  if (@secondPlayer.game_over)
+    break
+  end
 
   puts "---------- NEW TURN ----------"
   
 end
 
+if(@firstPlayer.game_over)
+  puts "SORRY PLAYER 1 - GAME OVER!"
+else(@secondPlayer.game_over)
+  puts "SORRY PLAYER 2 - GAME OVER!"
+end
 
 

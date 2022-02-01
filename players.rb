@@ -3,7 +3,7 @@
 
 class Players
 
-  attr_accessor :name, :lives
+  attr_reader :name, :lives
 
   #lives starts at 3 for all players
   def initialize(name)
@@ -18,7 +18,7 @@ class Players
 
   #game over when life is zero
   def game_over
-    @lives = 0
+    @lives == 0
   end
   
 end

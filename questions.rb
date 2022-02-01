@@ -1,27 +1,23 @@
 # Questions/Validations
-#     - Will contain all questions and correct answers
+#     - Will contain the generated random numbers and validation
 #       * Methods; 
-#         1. questions
-#         2. answers
+#         1. generate random numbers
+#         2. validate answers
 
 #rand - generates random number
 
 class Questions
 
-  def generate_random_numbers
-
-    first_random_number = rand(1...20)
-    second_random_number = rand(1...20)
-
-    return first_random_number, second_random_number
+  def self.first_random_number
+    @first_random_number = rand(1...20)
   end
 
-  def validate_answers(result, answer)
-    if (result == answer)
-      true
-    else
-      false
-    end
+  def self.second_random_number
+    @second_random_number = rand(1...20)
+  end
+
+  def self.validate_answers(input)
+    input.to_i == (@first_random_number + @second_random_number)
   end
 
 end
